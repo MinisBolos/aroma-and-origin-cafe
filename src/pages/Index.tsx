@@ -1,4 +1,3 @@
-
 import { Coffee, Leaf, Star, Check, DollarSign } from "lucide-react";
 import { CoffeeButton } from "@/components/CoffeeButton";
 import { BenefitCard } from "@/components/BenefitCard";
@@ -52,9 +51,9 @@ const Index = () => {
       <header className="py-6 px-4 md:px-8 lg:px-16 flex justify-between items-center sticky top-0 bg-coffee-bg bg-opacity-95 backdrop-blur-sm z-10">
         <div className="flex items-center">
           <div className="h-12 w-12 bg-coffee-dark rounded-full flex items-center justify-center">
-            <span className="font-playfair text-white text-xl font-bold">A</span>
+            <span className="font-playfair text-white text-xl font-bold">G</span>
           </div>
-          <h1 className="font-playfair text-xl md:text-2xl font-bold ml-3 text-coffee-dark">Aroma & Origem</h1>
+          <h1 className="font-playfair text-xl md:text-2xl font-bold ml-3 text-coffee-dark">Café Grind Especial</h1>
         </div>
         <nav className="hidden md:flex gap-8 font-raleway">
           <a href="#about" className="text-coffee-medium hover:text-coffee-dark transition-colors">Sobre</a>
@@ -70,13 +69,13 @@ const Index = () => {
           <div className="order-2 md:order-1">
             <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-coffee-dark">
               <span className="block">Café Especial</span>
-              <span className="text-coffee-medium">Aroma & Origem</span>
+              <span className="text-coffee-medium">Café Grind Especial</span>
             </h1>
             <p className="font-raleway text-lg mb-8 text-coffee-medium max-w-xl">
-              Um café especial com pontuação de 82 pontos na escala da SCA. 
-              Cultivado em altitudes elevadas, com perfil sensorial que lembra
-              notas de chocolate amargo e frutas vermelhas. Corpo médio, acidez 
-              equilibrada e finalização limpa.
+              Um café especial com pontuação de 82 pontos na escala da SCA, 
+              vendido exclusivamente torrado. Cultivado em altitudes elevadas, 
+              com perfil sensorial que lembra notas de chocolate amargo e frutas 
+              vermelhas. Corpo médio, acidez equilibrada e finalização limpa.
             </p>
             <div className="flex flex-wrap gap-4">
               <CoffeeButton size="large">
@@ -208,7 +207,7 @@ const Index = () => {
             </div>
             <div className="p-8 md:col-span-3">
               <span className="bg-coffee-accent text-coffee-dark text-xs uppercase font-bold rounded-full px-3 py-1 mb-4 inline-block">Edição Especial</span>
-              <h3 className="font-playfair text-3xl font-bold mb-4 text-coffee-dark">Café Aroma & Origem</h3>
+              <h3 className="font-playfair text-3xl font-bold mb-4 text-coffee-dark">Café Grind Especial</h3>
               <div className="flex items-center mb-4">
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -273,9 +272,9 @@ const Index = () => {
             <div>
               <div className="flex items-center mb-4">
                 <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center">
-                  <span className="font-playfair text-coffee-dark text-lg font-bold">A</span>
+                  <span className="font-playfair text-coffee-dark text-lg font-bold">G</span>
                 </div>
-                <h3 className="font-playfair text-xl font-bold ml-3">Aroma & Origem</h3>
+                <h3 className="font-playfair text-xl font-bold ml-3">Café Grind Especial</h3>
               </div>
               <p className="font-raleway text-sm text-gray-300">
                 Café especial cuidadosamente selecionado para proporcionar uma experiência sensorial única.
