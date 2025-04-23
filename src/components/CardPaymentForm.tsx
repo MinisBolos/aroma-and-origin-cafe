@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface CardPaymentFormProps {
   onPaymentSuccess: () => void;
@@ -14,6 +15,7 @@ const CardPaymentForm: React.FC<CardPaymentFormProps> = ({ onPaymentSuccess }) =
   const [cvv, setCvv] = useState('');
   const [cardholderName, setCardholderName] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [insufficientFunds, setInsufficientFunds] = useState(false);
   const { toast } = useToast();
 
   const formatCardNumber = (value: string) => {
@@ -81,23 +83,44 @@ const CardPaymentForm: React.FC<CardPaymentFormProps> = ({ onPaymentSuccess }) =
     if (!validateCardDetails()) return;
 
     setIsProcessing(true);
+    setInsufficientFunds(false);
     
-    // Simulate payment processing
+    // Simulate payment processing with random success/failure
     setTimeout(() => {
       setIsProcessing(false);
+      
+      // Simulate 30% chance of insufficient funds
+      const hasInsufficientFunds = Math.random() < 0.3;
+      
+      if (hasInsufficientFunds) {
+        setInsufficientFunds(true);
+        toast({
+          title: "Erro no pagamento",
+          description: "Seu cartão está sem saldo",
+          variant: "destructive"
+        });
+        return;
+      }
       
       toast({
         title: "Pagamento aprovado",
         description: "Seu pagamento foi processado com sucesso"
       });
       
-      // Call the success callback to proceed with the order
       onPaymentSuccess();
     }, 2000);
   };
 
   return (
     <div className="space-y-4 mt-6">
+      {insufficientFunds && (
+        <Alert variant="destructive" className="mb-4">
+          <AlertDescription>
+            Seu cartão está sem saldo. Por favor, utilize outro cartão ou método de pagamento.
+          </AlertDescription>
+        </Alert>
+      )}
+
       <div>
         <Label htmlFor="cardNumber">Número do Cartão</Label>
         <Input 

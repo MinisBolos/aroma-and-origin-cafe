@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { CoffeeButton } from "@/components/CoffeeButton";
-import { CreditCard, Coins, QrCode, Check } from "lucide-react";
+import { CreditCard, Coins, QrCode, Check, ArrowLeft } from "lucide-react";
 import CardPaymentForm from "@/components/CardPaymentForm";
 import PixPaymentInfo from "@/components/PixPaymentInfo";
 import { useToast } from "@/hooks/use-toast";
@@ -26,10 +25,8 @@ const Payment = () => {
   };
 
   const handlePaymentSuccess = () => {
-    // Set payment as completed
     setPaymentCompleted(true);
     
-    // Get delivery information from sessionStorage (saved during checkout)
     const deliveryInfo = {
       receiver: sessionStorage.getItem('receiver') || '',
       email: sessionStorage.getItem('email') || '',
@@ -38,7 +35,6 @@ const Payment = () => {
       reference: sessionStorage.getItem('reference') || '',
     };
     
-    // Send WhatsApp message with delivery information
     const phoneNumber = "5521971550633";
     const message = `Nova compra!\n
 Nome: ${deliveryInfo.receiver}\n
@@ -52,10 +48,8 @@ Valor: R$ 34,90`;
     
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     
-    // Open WhatsApp in a new tab
     window.open(whatsappUrl, '_blank');
     
-    // Also show confirmation to the user
     toast({
       title: "Pedido confirmado!",
       description: "As informações do pedido foram enviadas para o vendedor.",
@@ -64,6 +58,10 @@ Valor: R$ 34,90`;
 
   const handleReturnHome = () => {
     navigate('/');
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
   };
 
   if (paymentCompleted) {
@@ -91,7 +89,15 @@ Valor: R$ 34,90`;
   return (
     <div className="min-h-screen bg-coffee-bg py-16 px-4 md:px-8 lg:px-16">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
-        <h1 className="font-playfair text-3xl font-bold mb-6 text-coffee-dark">Pagamento</h1>
+        <div className="flex items-center mb-6">
+          <button
+            onClick={handleGoBack}
+            className="flex items-center text-coffee-dark hover:text-coffee-medium transition-colors mr-4"
+          >
+            <ArrowLeft className="w-6 h-6" />
+          </button>
+          <h1 className="font-playfair text-3xl font-bold text-coffee-dark">Pagamento</h1>
+        </div>
         
         <div className="max-w-md mx-auto">
           <div className="mb-8">
