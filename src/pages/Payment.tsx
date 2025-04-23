@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -25,35 +26,35 @@ const Payment = () => {
   };
 
   const handlePaymentSuccess = () => {
-    setPaymentCompleted(true);
-    
-    const deliveryInfo = {
-      receiver: sessionStorage.getItem('receiver') || '',
-      email: sessionStorage.getItem('email') || '',
-      address: sessionStorage.getItem('address') || '',
-      cep: sessionStorage.getItem('cep') || '',
-      reference: sessionStorage.getItem('reference') || '',
-    };
-    
-    const phoneNumber = "5521971550633";
-    const message = `Nova compra!\n
+    if (paymentMethod === "pix") {
+      setPaymentCompleted(true);
+      
+      const deliveryInfo = {
+        receiver: sessionStorage.getItem('receiver') || '',
+        email: sessionStorage.getItem('email') || '',
+        address: sessionStorage.getItem('address') || '',
+        cep: sessionStorage.getItem('cep') || '',
+        reference: sessionStorage.getItem('reference') || '',
+      };
+      
+      const phoneNumber = "5521971550633";
+      const message = `Nova compra!\n
 Nome: ${deliveryInfo.receiver}\n
 Email: ${deliveryInfo.email}\n
 CEP: ${deliveryInfo.cep}\n
 Endereço: ${deliveryInfo.address}\n
 Ponto de referência: ${deliveryInfo.reference}\n
-Método de pagamento: ${paymentMethod === 'credit' ? 'Cartão de Crédito' : 
-  paymentMethod === 'debit' ? 'Cartão de Débito' : 'PIX'}\n
+Método de pagamento: PIX\n
 Valor: R$ 34,90`;
-    
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    
-    window.open(whatsappUrl, '_blank');
-    
-    toast({
-      title: "Pedido confirmado!",
-      description: "As informações do pedido foram enviadas para o vendedor.",
-    });
+      
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+      
+      toast({
+        title: "Pedido confirmado!",
+        description: "As informações do pedido foram enviadas para o vendedor.",
+      });
+    }
   };
 
   const handleReturnHome = () => {
