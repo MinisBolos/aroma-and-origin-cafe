@@ -1,9 +1,17 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CoffeeButton } from "@/components/CoffeeButton";
-import { DollarSign } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const Checkout = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate('/payment');
+  };
+
   return (
     <div className="min-h-screen bg-coffee-bg py-16 px-4 md:px-8 lg:px-16">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
@@ -26,25 +34,54 @@ const Checkout = () => {
           
           <div>
             <h2 className="font-playfair text-xl font-semibold mb-4 text-coffee-dark">Informações de Entrega</h2>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="name" className="block font-raleway text-coffee-medium mb-2">Nome Completo</label>
-                <input 
+                <label htmlFor="receiver" className="block font-raleway text-coffee-medium mb-2">Nome de quem vai receber</label>
+                <Input 
                   type="text" 
-                  id="name" 
-                  className="w-full px-3 py-2 border border-coffee-cream rounded-md focus:outline-coffee-dark"
+                  id="receiver" 
+                  className="w-full"
+                  required
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block font-raleway text-coffee-medium mb-2">E-mail</label>
-                <input 
+                <Input 
                   type="email" 
                   id="email" 
-                  className="w-full px-3 py-2 border border-coffee-cream rounded-md focus:outline-coffee-dark"
+                  className="w-full"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="cep" className="block font-raleway text-coffee-medium mb-2">CEP</label>
+                <Input 
+                  type="text" 
+                  id="cep" 
+                  className="w-full"
+                  required
+                  maxLength={9}
+                />
+              </div>
+              <div>
+                <label htmlFor="address" className="block font-raleway text-coffee-medium mb-2">Endereço de Entrega</label>
+                <Input 
+                  type="text" 
+                  id="address" 
+                  className="w-full"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="reference" className="block font-raleway text-coffee-medium mb-2">Ponto de Referência</label>
+                <Input 
+                  type="text" 
+                  id="reference" 
+                  className="w-full"
                 />
               </div>
               <CoffeeButton type="submit" className="w-full mt-4">
-                Finalizar Compra
+                Ir para Pagamento
               </CoffeeButton>
             </form>
           </div>
@@ -55,4 +92,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
