@@ -1,49 +1,32 @@
 
 import React from 'react';
-import { QrCode } from 'lucide-react';
-import { Card, CardContent } from "@/components/ui/card";
-import { CoffeeButton } from "@/components/CoffeeButton";
+import { useToast } from "@/hooks/use-toast";
 
 interface PixPaymentInfoProps {
   onPaymentSuccess: () => void;
 }
 
-const PixPaymentInfo: React.FC<PixPaymentInfoProps> = ({ onPaymentSuccess }) => {
-  const pixKey = "cafe.grind.especial@email.com";
+const PixPaymentInfo: React.FC<PixPaymentInfoProps> = () => {
+  const { toast } = useToast();
   
-  const handleConfirmPayment = () => {
-    // Since we can't verify PIX payments in real-time here,
-    // we'll just simulate a successful payment
-    onPaymentSuccess();
+  const handleRedirect = () => {
+    // Redirect to Asaas payment link
+    window.location.href = "https://www.asaas.com/c/v1hjrki3eim4ywx5";
   };
-  
+
   return (
-    <div className="space-y-6 mt-6">
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex flex-col items-center space-y-4">
-            <QrCode className="w-32 h-32" />
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-2">
-                Escaneie o QR Code ou copie a chave PIX abaixo
-              </p>
-              <div className="bg-muted p-3 rounded-md">
-                <p className="text-sm font-mono select-all">{pixKey}</p>
-              </div>
-              <p className="text-sm text-muted-foreground mt-4">
-                Uma cópia da chave PIX foi enviada para seu e-mail
-              </p>
-              
-              <CoffeeButton 
-                className="mt-6" 
-                onClick={handleConfirmPayment}
-              >
-                Confirmar Pagamento
-              </CoffeeButton>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+    <div className="space-y-4 mt-6">
+      <p className="text-coffee-medium mb-4">
+        Você será redirecionado para nossa página de pagamento segura.
+      </p>
+      
+      <button 
+        type="button" 
+        className="mt-4 bg-coffee-medium text-white px-4 py-2 rounded-md w-full hover:bg-coffee-dark transition-colors"
+        onClick={handleRedirect}
+      >
+        Continuar para pagamento
+      </button>
     </div>
   );
 };
