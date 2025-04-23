@@ -1,7 +1,8 @@
-import { Coffee, Leaf, Star, Check, DollarSign } from "lucide-react";
+import { Coffee, Leaf, Star, Check, DollarSign, ShoppingCart } from "lucide-react";
 import { CoffeeButton } from "@/components/CoffeeButton";
 import { BenefitCard } from "@/components/BenefitCard";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import { Link } from "react-router-dom";
 
 const testimonials = [
   {
@@ -243,9 +244,11 @@ const Index = () => {
                 </div>
               </div>
               
-              <CoffeeButton className="w-full text-center py-4">
-                Quero meu Café
-              </CoffeeButton>
+              <Link to="/checkout" className="block">
+                <CoffeeButton className="w-full text-center py-4">
+                  <ShoppingCart className="mr-2" /> Quero meu Café
+                </CoffeeButton>
+              </Link>
             </div>
           </div>
         </div>
