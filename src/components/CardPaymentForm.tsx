@@ -9,6 +9,12 @@ interface CardPaymentFormProps {
   onPaymentSuccess: () => void;
 }
 
+const RECEIVING_ACCOUNT = {
+  bank: "ASSAS",
+  agency: "0001",
+  account: "4215676-0"
+};
+
 const CardPaymentForm: React.FC<CardPaymentFormProps> = ({ onPaymentSuccess }) => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiry, setExpiry] = useState('');
@@ -85,7 +91,9 @@ const CardPaymentForm: React.FC<CardPaymentFormProps> = ({ onPaymentSuccess }) =
     setIsProcessing(true);
     setInsufficientFunds(false);
     
-    // Simulate payment processing with random success/failure
+    // Simulate payment processing with destination account
+    console.log(`Processing payment to ${RECEIVING_ACCOUNT.bank} - AG: ${RECEIVING_ACCOUNT.agency} CC: ${RECEIVING_ACCOUNT.account}`);
+    
     setTimeout(() => {
       setIsProcessing(false);
       
