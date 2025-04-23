@@ -61,8 +61,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+                // Cores personalizadas para o café
+                coffee: {
+                    dark: '#2C1D10',
+                    medium: '#66462F',
+                    light: '#A67E56',
+                    accent: '#D4A573',
+                    cream: '#E6D2B5',
+                    bg: '#FBF7F0'
+                }
 			},
+            fontFamily: {
+                'playfair': ['Playfair Display', 'serif'],
+                'raleway': ['Raleway', 'sans-serif']
+            },
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
