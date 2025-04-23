@@ -2,9 +2,20 @@
 import React from 'react';
 import { QrCode } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
+import { CoffeeButton } from "@/components/CoffeeButton";
 
-const PixPaymentInfo = () => {
+interface PixPaymentInfoProps {
+  onPaymentSuccess: () => void;
+}
+
+const PixPaymentInfo: React.FC<PixPaymentInfoProps> = ({ onPaymentSuccess }) => {
   const pixKey = "cafe.grind.especial@email.com";
+  
+  const handleConfirmPayment = () => {
+    // Since we can't verify PIX payments in real-time here,
+    // we'll just simulate a successful payment
+    onPaymentSuccess();
+  };
   
   return (
     <div className="space-y-6 mt-6">
@@ -22,6 +33,13 @@ const PixPaymentInfo = () => {
               <p className="text-sm text-muted-foreground mt-4">
                 Uma cópia da chave PIX foi enviada para seu e-mail
               </p>
+              
+              <CoffeeButton 
+                className="mt-6" 
+                onClick={handleConfirmPayment}
+              >
+                Confirmar Pagamento
+              </CoffeeButton>
             </div>
           </div>
         </CardContent>

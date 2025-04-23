@@ -9,6 +9,22 @@ const Checkout = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(e.target as HTMLFormElement);
+    const receiver = formData.get('receiver') as string;
+    const email = formData.get('email') as string;
+    const cep = formData.get('cep') as string;
+    const address = formData.get('address') as string;
+    const reference = formData.get('reference') as string;
+    
+    // Save form data in sessionStorage for later use
+    sessionStorage.setItem('receiver', receiver);
+    sessionStorage.setItem('email', email);
+    sessionStorage.setItem('cep', cep);
+    sessionStorage.setItem('address', address);
+    sessionStorage.setItem('reference', reference || '');
+    
     navigate('/payment');
   };
 
@@ -39,7 +55,8 @@ const Checkout = () => {
                 <label htmlFor="receiver" className="block font-raleway text-coffee-medium mb-2">Nome de quem vai receber</label>
                 <Input 
                   type="text" 
-                  id="receiver" 
+                  id="receiver"
+                  name="receiver"
                   className="w-full"
                   required
                 />
@@ -49,6 +66,7 @@ const Checkout = () => {
                 <Input 
                   type="email" 
                   id="email" 
+                  name="email"
                   className="w-full"
                   required
                 />
@@ -58,6 +76,7 @@ const Checkout = () => {
                 <Input 
                   type="text" 
                   id="cep" 
+                  name="cep"
                   className="w-full"
                   required
                   maxLength={9}
@@ -68,6 +87,7 @@ const Checkout = () => {
                 <Input 
                   type="text" 
                   id="address" 
+                  name="address"
                   className="w-full"
                   required
                 />
@@ -77,6 +97,7 @@ const Checkout = () => {
                 <Input 
                   type="text" 
                   id="reference" 
+                  name="reference"
                   className="w-full"
                 />
               </div>
